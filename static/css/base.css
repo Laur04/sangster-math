@@ -1,0 +1,65 @@
+main {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+}
+
+.centered-div {
+    text-align: center;
+}
+
+.aps-btn {
+    background-color: #a94a8f;
+    padding: .3em 1em .3em 1em;
+    border: none;
+    font-weight: bold;
+    text-decoration: none;
+    color: #ffffff;
+    display: inline-block;
+    margin: 10px;
+}
+
+.aps-btn:hover {
+    background-color: #7e489b;
+}
+
+.header-1 {
+    color: #126479;
+    font-size: 3em;
+    font-weight: 900;
+}
+
+.header-2 {
+    color: #126479;
+    font-size: 2em;
+    font-weight: 750;
+}
+
+.header-2-5 {
+    color: #126479;
+    font-size: 1.5em;
+    font-weight: 675;
+}
+
+.header-3 {
+    color: #126479;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.error, .errorlist {
+    color: #db92bf;
+    font-weight: 600;
+}
+
+.form-box {
+    text-align: center;
+    padding: 15px;
+    border: 1px solid #126479;
+    margin: 15px auto;
+    width: 70%;
+    max-width: 700px;
+}
+
+.header-img {
+    width: 100%;
+}

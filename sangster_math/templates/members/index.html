@@ -1,0 +1,30 @@
+{% extends "base_with_head.html" %}
+
+{% load static %}
+
+{% block main %}
+    <p class='header-1'>Welcome to Sangster Math Club!</p>
+    <p>
+        If you are new, please register <a href="{% url 'members:signup' %}">here.</a>
+        Please create accounts in the student's name. All communication and information
+        will be centralized on this website here.
+    </p>
+    <p>
+        Our schedule will be posted and updated in the "Schedule" tab.
+        Please indicate your availability; all sessions will be held over Zoom
+        and our competitions will be conducted virtually.
+    </p>
+    <p>
+        Assignments and other updates will be posted in the "Assignments" tab
+        and you can mark your completion. Answers will be posted sometime soon after
+        the original assignment goes out.
+    </p>
+    <p>
+        Finally, we have a discussion board so that you can work with your teammates on
+        math problems and ask questions to the coaches. One of our coaches will get back
+        to you as soon as possible.
+    </p>
+    <p>
+        Thank you for your interest in the Sangster Math Club!
+    </p>
+{% endblock %}

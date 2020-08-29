@@ -1,0 +1,21 @@
+{% extends "base_with_head.html" %}
+
+{% load static %}
+
+{% block main %}
+    <p class="header-1">Tests</p>
+    <a href="{% url 'members:add_test' %}"><button class="aps-btn">Add Test</button></a>
+    <br><br>
+    <hr>
+    {% for test, scores in tests.items %}
+        <p class="header-3">{{ test.title }}</p>
+        <p>Total points: {{ test.points }}</p>
+        <ol>
+            {% for s in scores %}
+                <li>{{ s.user.first_name }} {{ s.user.last_name }} - {{ s.score }}</li>
+            {% endfor %}
+        </ol>
+        <a href="{% url 'members:edit_test' test.test_id %}"><button class="aps-btn">Edit Test and Scores</button></a>
+        <hr>
+    {% endfor %}
+{% endblock %}

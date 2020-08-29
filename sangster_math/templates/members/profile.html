@@ -1,0 +1,44 @@
+{% extends "base_with_head.html" %}
+
+{% load static %}
+
+{% block main %}
+    <p class="header-2">{{ user.first_name }} {{ user.last_name }}</p>
+    <p>Student ID: {{ member.student_id }}</p>
+    {% if member.same_email %}
+        <p>Email: {{ user.email }}</p>
+    {% endif %}
+    <br>
+    <p>Parent: {{ member.parent_first_name }} {{ member.parent_last_name }}</p>
+    <p>Email: {{ member.parent_email }}</p>
+    <br>
+    {% if is_coach or is_user %}
+        <p class="header-3">Meetings Attended</p>
+        <ul>
+            {% for e in attendance %}
+                <li>{{ e.name }} ({{ e.day }})</li>
+            {% endfor %}
+        </ul>
+        <p class="header-3">Assignments Completed</p>
+        <ul>
+            {% for a in completed_assignments %}
+                <li>{{ a.title }}</li>
+            {% endfor %}
+        </ul>
+        <p class="header-3">Test Scores</p>
+        <ul>
+            {% for t in test_scores %}
+                <li>{{ t.test.title }}: {{ t.score }}/{{ t.test.points }} ({{ t.get_percentage }})</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if is_coach %}
+        {% if member.same_email %}
+            <a href="mailto:{{ user.email }}?&bcc=sangster_math_club@gmail.com"><button class="aps-btn">Send Email</button></a>
+        {% else %}
+            <a href="mailto:{{ user.email }},{{ member.parent_email }}?&bcc=sangster_math_club@gmail.com"><button class="aps-btn">Send Email</button></a>
+        {% endif %}
+        <a href="mailto:{{ member.get_school_email }}?&bcc=1468333@fcpsschools.net"><button class="aps-btn">Send FCPS Email</button></a>
+        <a href="{% url 'discussion:index' %}"><button class="aps-btn">Send Message</button></a>
+    {% endif %}
+{% endblock %}

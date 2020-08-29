@@ -1,0 +1,101 @@
+{% extends 'base_with_head.html' %}
+
+{% load static %}
+
+{% block main %}
+    <div class='form-box'>
+        <form method='post' enctype='multipart/form-data'>
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>{{ form.username.label }}</td>
+                    <td>{{ form.username }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p class="error">{{ form.username.errors }}</p></td>
+                </tr>
+
+                <tr>
+                    <td>{{ form.student_first_name.label }}</td>
+                    <td>{{ form.student_first_name }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p class="error">{{ form.student_first_name.errors }}</p></td>
+                </tr>
+
+                <tr>
+                    <td>{{ form.student_last_name.label }}</td>
+                    <td>{{ form.student_last_name }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p class="error">{{ form.student_last_name.errors }}</p></td>
+                </tr>
+
+                <tr>
+                    <td>{{ form.student_email.label }}</td>
+                    <td>{{ form.student_email }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p class="error">{{ form.student_email.errors }}</p></td>
+                </tr>
+
+                <tr>
+                    <td>{{ form.student_id.label }}</td>
+                    <td>{{ form.student_id }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p class="error">{{ form.student_id.errors }}</p></td>
+                </tr>
+
+                <tr>
+                    <td>{{ form.parent_first_name.label }}</td>
+                    <td>{{ form.parent_first_name }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p class="error">{{ form.parent_first_name.errors }}</p></td>
+                </tr>
+
+                <tr>
+                    <td>{{ form.parent_last_name.label }}</td>
+                    <td>{{ form.parent_last_name }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p class="error">{{ form.parent_last_name.errors }}</p></td>
+                </tr>
+
+                <tr>
+                    <td>{{ form.parent_email.label }}</td>
+                    <td>{{ form.parent_email }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p class="error">{{ form.parent_email.errors }}</p></td>
+                </tr>
+
+                <tr>
+                    <td>{{ form.student_grade.label }}</td>
+                    <td>{{ form.student_grade }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p class="error">{{ form.student_grade.errors }}</p></td>
+                </tr>
+
+                <tr>
+                    <td>{{ form.password_one.label }}</td>
+                    <td>{{ form.password_one }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p class="error">{{ form.password_one.errors }}</p></td>
+                </tr>
+                
+                <tr>
+                    <td>{{ form.password_two.label }}</td>
+                    <td>{{ form.password_two }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p class="error">{{ form.password_two.errors }}</p></td>
+                </tr>
+            </table>
+            <input class='aps-btn' type='submit' name='Submit' value='Create'/>
+        </form>
+    </div>
+{% endblock %}

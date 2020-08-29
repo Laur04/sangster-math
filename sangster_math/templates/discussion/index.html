@@ -1,0 +1,12 @@
+{% extends "base_with_head.html" %}
+
+{% load static %}
+
+{% block head %}
+    <link rel='stylesheet' href="{% static 'css/discussion.css' %}">
+
+{% endblock %}
+
+{% block main %}
+    <p class="header-3">Discussion page coming soon! Click <a href="{% url 'members:index' %}">here</a> to return to the main page.</p>
+{% endblock %}

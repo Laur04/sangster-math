@@ -1,0 +1,38 @@
+{% extends 'base_with_head.html' %}
+
+{% load static %}
+
+{% block main %}
+    <div class='form-box'>
+        <form method='post' enctype='multipart/form-data'>
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>{{ test_form.title.label }}</td>
+                    <td>{{ test_form.title }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p class="error">{{ test_form.title.errors }}</p></td>
+                </tr>
+
+                <tr>
+                    <td>{{ test_form.points.label }}</td>
+                    <td>{{ test_form.points }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p class="error">{{ test_form.points.errors }}</p></td>
+                </tr>
+                {% for form in score_forms %}
+                    <tr>
+                        <td>{{ form.score.label }}</td>
+                        <td>{{ form.score }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><p class="error">{{ form.score.errors }}</p></td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <input class='aps-btn' type='submit' name='Submit' value='Save'/>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,69 @@
+.header {
+    height: 230px;
+    z-index: 1;
+    margin: 0px;
+}
+
+.header-back {
+    background-image: url("https://higherlogicdownload.s3.amazonaws.com/APS/2c0c9f07-6428-4f8e-b9aa-a76098a80cd0/UploadedImages/hex-top.svg");
+    background-position: right;
+    background-repeat: no-repeat;
+    opacity: 0.4;
+    height: 230px;
+}
+
+.head-logo {
+    width: 40%;
+    max-width: 230px;
+    position: absolute;
+    top: 25px;
+    left: calc(15vw - 50px);
+}
+
+.btn-bar {
+    position: absolute;
+    top: 190px;
+    left: 0px;
+    right: 15px;
+    padding-left: calc(15vw - 50px);
+    background: linear-gradient(to right, #126479, #9bc1b4);
+}
+
+.nav-item {
+    color: #ffffff;
+    font-size: 1.5em;
+    list-style: none;
+    font-weight: bold;
+    box-sizing: border-box;
+    text-shadow: #000000;
+    padding: .5em;
+}
+
+.nav-item:hover, .user-item:hover, .drop-item:hover {
+    text-decoration: none;
+    background-color: #9bc1b4;
+    color: #ffffff;
+}
+
+.user-item {
+    color: #ffffff;
+}
+
+.drop-item {
+    background-color: #9bc1b4;
+    color: #ffffff;
+}
+
+.drop-item:hover {
+    color: #126479;
+}
+
+.height-holder {
+    height: 40px;
+}
+
+@media screen and (max-width: 75em) {
+    .head-logo {
+        max-width: 200px;
+    }
+}

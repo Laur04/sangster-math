@@ -1,0 +1,49 @@
+{% extends "base_with_head.html" %}
+
+{% load static %}
+
+{% block head %}
+    <link rel='stylesheet' href="{% static 'css/assignments.css' %}">
+{% endblock %}
+
+{% block main %}
+    <p class="header-1">Assignment Stream</p>
+    <p>All of the club's annoucements, along with any assignments will be posted below.</p>
+    {% if is_coach %}
+        <a href="{% url 'assignments:create' %}"><button class="aps-btn">Create Post/Assignment</button></a>
+    {% endif %}
+    <div class="post-wrapper">
+        {% for p in posts %}
+            <div class="row post" id="{{ p.0.post_id }}">
+                <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+                    <p><strong>{{ p.0.title }}</strong> {% if p.1 %}<i class="completed fas fa-check"></i>{% elif p.1 is not None %}<i class="uncompleted fas fa-times"></i>{% endif %}</p>
+                    <p>{{ p.0.content }}</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 centered-div">
+                    {% if p.0.is_assignment %}
+                        <a href="{{ p.0.assignment_link }}"><button class="aps-btn">View Assignment Link</button></a>
+                        <a href="{% url 'discussion:index' %}"><button class="aps-btn">Discussion</button></a>
+                        {% if is_coach %}
+                            <a href="{% url 'assignments:edit' p.0.post_id %}"><button class="aps-btn">Edit Post</button></a>
+                            <a href="{{ p.0.answer_link }}"><button class="aps-btn">
+                                View Answers {% if not p.0.answers_showing %}(Available at {{ p.0.answer_post_time }}){% endif %}
+                            </button></a>
+                            <button class="aps-btn" onclick="alert('{{ p.0.users_completed_pretty }}')">View Finished Students</button>
+                        {% else %}
+                            {% if p.0.answers_showing %}
+                                <a href="{{ p.0.answer_link }}"><button class="aps-btn">View Answers</button></a>
+                            {% endif %}
+                            {% if p.1 %}
+                                <a href="{% url 'assignments:toggle' p.0.post_id 'remove' %}"><button class="aps-btn">Mark Uncompleted</button></a>
+                            {% else %}
+                                <a href="{% url 'assignments:toggle' p.0.post_id 'add' %}"><button class="aps-btn">Mark Completed</button></a>
+                            {% endif %}
+                        {% endif %}   
+                    {% else %}
+                        <a href="{% url 'assignments:edit' p.0.post_id %}"><button class="aps-btn">Edit Post</button></a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

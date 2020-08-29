@@ -1,0 +1,21 @@
+{% extends 'base_with_head.html' %}
+
+{% load static %}
+
+{% block main %}
+    <div class='form-box'>
+        <form method='post' enctype='multipart/form-data'>
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>{{ form.attendees.label }}</td>
+                    <td>{{ form.attendees }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p class="error">{{ form.attendees.errors }}</p></td>
+                </tr>
+            </table>
+            <input class='aps-btn' type='submit' name='Submit' value='Save'/>
+        </form>
+    </div>
+{% endblock %}

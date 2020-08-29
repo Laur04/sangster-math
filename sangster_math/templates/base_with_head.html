@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block root %}
+    <div class='header'>
+        <div class="header-back"></div>
+        <div class="brand">
+            <a href="{% url 'members:index' %}"><img class="head-logo" src="{% static 'img/logo-large.png' %}"/></a>
+        </div>
+        <div class="btn-bar row">
+            <a href="{% url 'schedule:calendar' %}" class="nav-item">Schedule</a>
+            <a href="{% url 'assignments:index' %}" class="nav-item">Assignments</a>
+            <a href="{% url 'discussion:index' %}" class="nav-item">Discussion</a>
+            <div class="dropdown nav-item">
+                <button class="btn dropdown-toggle user-item" data-toggle="dropdown">
+                    <i class="fas fa-user"></i>
+                    <span class="caret"></span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right drop-item">
+                    {% if user.is_authenticated %}
+                        {% if user.groups.all.0|stringformat:"s" == "students" %}
+                            <ul><a href="{% url 'members:profile' user.member.member_id %}" class="drop-item">{{ user.username }}</a></ul>
+                        {% else %}
+                            <ul class="drop-item">{{ user.username }}</ul>
+                            <ul><a class="drop-item" href="{% url 'members:list_students' %}">View Students</a></ul>
+                            <ul><a class="drop-item" href="{% url 'members:test_list' %}">View Tests</a></ul>
+                        {% endif %}
+                        <ul><a href="{% url 'logout' %}" class="drop-item">Logout</a></ul>
+                    {% else %}
+                        <ul><a href="{% url 'login' %}" class="drop-item">Login</a></ul>
+                        <ul><a href="{% url 'members:signup' %}" class="drop-item">Register</a></ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>               
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <div class="height-holder"></div>
+
+    <div style="margin:20px;">
+        {% block main %}{% endblock %}
+    </div>
+{% endblock %}

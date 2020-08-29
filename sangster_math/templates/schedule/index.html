@@ -1,0 +1,75 @@
+{% extends "base_with_head.html" %}
+
+{% load static %}
+
+{% block head %}
+    <link rel='stylesheet' href="{% static 'css/schedule.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="row month-nav">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
+            {% if prev_month is not None %}
+                <a href="{% url 'schedule:calendar_by_month' prev_month %}"><i class="header-2 fas fa-arrow-left"></i></a>
+            {% endif %}
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4">
+            <p class="header-1">{{ month }}</p>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
+            {% if next_month is not None %}
+                <a href="{% url 'schedule:calendar_by_month' next_month %}"><i class="header-2 fas fa-arrow-right"></i></a>
+            {% endif %}
+        </div>
+    </div>
+    {% if is_coach %}
+        <a href="{% url 'schedule:add_event' %}"><button class="aps-btn">Create Event</button></a>
+    {% endif %}
+    <br>
+    <table class="calendar-wrapper">
+        <tr class="headers">
+            <th class="header-2-5">Sunday</th>
+            <th class="header-2-5">Monday</th>
+            <th class="header-2-5">Tuesday</th>
+            <th class="header-2-5">Wednesday</th>
+            <th class="header-2-5">Thursday</th>
+            <th class="header-2-5">Friday</th>
+            <th class="header-2-5">Saturday</th>
+        </tr>
+        {% for week in weeks %}
+            <tr>
+                {% for day in week %}
+                    <td class="day">
+                        {% if day is not None %}
+                            <div style="text-align:left;"><p class="header-3">{{ day.0.date.day }}</p></div>
+                            <br>
+                            {% for event in day.1 %}
+                                <p>{{ event.0.time }} - {{ event.0.name }}</p>
+                                <br>
+                                {% if is_coach %}
+                                        <a href="{% url 'schedule:edit_event' event.0.event_id %}"><button class="aps-btn">Edit Event</button></a>
+                                        <a href="{% url 'schedule:remove_event' event.0.event_id %}"><button class="aps-btn">Delete Event</button></a>
+                                        <a href="{% url 'schedule:attendance' event.0.event_id %}"><button class="aps-btn">Take Attendance</button></a>
+
+                                        {% if event.0.attendance_taken %}
+                                            <button class="aps-btn" onclick="alert('{{ event.0.users_attended_pretty }}')">View Attendees</button>
+                                        {% else %}
+                                            <button class="aps-btn" onclick="alert('{{ event.0.users_attending_pretty }}')">Students Attending</button>
+                                        {% endif %}
+                                {% else %}
+                                    {% if not event.0.is_past %}
+                                        {% if event.1 %}
+                                            <a href="{% url 'schedule:mark' 'remove' event.0.event_id %}"><button class="aps-btn">I'm not attending</button></a>
+                                        {% else %}
+                                            <a href="{% url 'schedule:mark' 'add' event.0.event_id %}"><button class="aps-btn">I'm attending!</button></a>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

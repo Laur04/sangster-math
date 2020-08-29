@@ -1,0 +1,17 @@
+.post-wrapper {
+    padding: 10px;
+}
+
+.post {
+    margin: 10px;
+    padding: 10px;
+    background-color: rgb(202, 200, 198);
+}
+
+.completed {
+    color: #008000
+}
+
+.uncompleted {
+    color: #900000
+}

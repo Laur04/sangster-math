@@ -1,0 +1,53 @@
+{% extends 'base_with_head.html' %}
+
+{% load static %}
+
+{% block main %}
+    <div class='form-box'>
+        <form method='post' enctype='multipart/form-data'>
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>{{ post_form.title.label }}</td>
+                    <td>{{ post_form.title }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p class="error">{{ post_form.title.errors }}</p></td>
+                </tr>
+
+                <tr>
+                    <td>{{ post_form.content.label }}</td>
+                    <td>{{ post_form.content }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p class="error">{{ post_form.content.errors }}</p></td>
+                </tr>
+
+                <tr>
+                    <td>{{ post_form.assignment_link.label }}</td>
+                    <td>{{ post_form.assignment_link }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p class="error">{{ post_form.assignment_link.errors }}</p></td>
+                </tr>
+
+                <tr>
+                    <td>{{ post_form.answer_link.label }}</td>
+                    <td>{{ post_form.answer_link }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p class="error">{{ post_form.answer_link.errors }}</p></td>
+                </tr>
+
+                <tr>
+                    <td>{{ post_form.answer_post_time.label }}</td>
+                    <td>{{ post_form.answer_post_time }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p class="error">{{ post_form.answer_post_time.errors }}</p></td>
+                </tr>
+            </table>
+            <input class='aps-btn' type='submit' name='Submit' value='Save'/>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,32 @@
+.month-nav {
+    text-align: center;
+}
+
+.calendar-wrapper {
+    width: 100%;
+    text-align: center;
+    background-color: rgb(202, 200, 198);
+    overflow-x: scroll;
+}
+
+th, td {
+    width: 14%;
+    border: 1px solid #000000;
+}
+
+.day {
+    min-width: 120px;
+    padding: 10px;
+    height: 125px;
+    vertical-align: top;
+}
+
+.headers {
+    height: 60px;
+}
+
+@media screen and (max-width: 33em) {
+    .month-nav {
+        margin-top: 50px;
+    }
+}

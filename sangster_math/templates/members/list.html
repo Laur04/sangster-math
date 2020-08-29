@@ -1,0 +1,9 @@
+{% extends "base_with_head.html" %}
+
+{% load static %}
+
+{% block main %}
+    {% for s in students %}
+        <p>{{ s.first_name }} {{ s.last_name }} ({{ s.username }}) <a target="_blank" href="{% url 'members:profile' s.member.member_id %}">more</a></p>
+    {% endfor %}
+{% endblock %}
