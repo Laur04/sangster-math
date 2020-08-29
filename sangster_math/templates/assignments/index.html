@@ -25,9 +25,11 @@
                         <a href="{% url 'discussion:index' %}"><button class="aps-btn">Discussion</button></a>
                         {% if is_coach %}
                             <a href="{% url 'assignments:edit' p.0.post_id %}"><button class="aps-btn">Edit Post</button></a>
-                            <a href="{{ p.0.answer_link }}"><button class="aps-btn">
-                                View Answers {% if not p.0.answers_showing %}(Available at {{ p.0.answer_post_time }}){% endif %}
-                            </button></a>
+                            {% if p.0.answer_link %}
+                                <a href="{{ p.0.answer_link }}"><button class="aps-btn">
+                                    View Answers {% if not p.0.answers_showing %}(Available at {{ p.0.answer_post_time }}){% endif %}
+                                </button></a>
+                            {% endif %}
                             <button class="aps-btn" onclick="alert('{{ p.0.users_completed_pretty }}')">View Finished Students</button>
                         {% else %}
                             {% if p.0.answers_showing %}
