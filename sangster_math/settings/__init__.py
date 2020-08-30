@@ -48,8 +48,7 @@ INSTALLED_APPS = [
     'sangster_math.apps.assignments',
     'sangster_math.apps.discussion',
     'sangster_math.apps.members',
-    'sangster_math.apps.schedule',
-    'captcha'
+    'sangster_math.apps.schedule'
 ]
 
 MIDDLEWARE = [

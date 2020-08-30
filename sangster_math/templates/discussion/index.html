@@ -4,9 +4,27 @@
 
 {% block head %}
     <link rel='stylesheet' href="{% static 'css/discussion.css' %}">
-
 {% endblock %}
 
 {% block main %}
-    <p class="header-3">Discussion page coming soon! Click <a href="{% url 'members:index' %}">here</a> to return to the main page.</p>
+    <p class="header-1">Discussion Board</p>
+    {% if is_coach %}
+        <a href="{% url 'discussion:add_chat' %}"><button class="aps-btn">Add Chat</button></a>
+        <a href="mailto:{{ personal_email_list }}?&bcc=sangster_math_club@gmail.com"><button class="aps-btn">Email Everyone</button></a>
+        <button onclick="alert('{{ school_email_list }}')" class="aps-btn">Generate FCPS Email List</button>
+    {% endif %}
+    <br>
+    {% for chat in chat_list %}
+        <div class="chat-wrapper row">
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <p class="header-2-5">{{ chat.name }}</p>
+            </div>
+            <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6 btn-space">
+                <a href="{% url 'discussion:view_chat' chat.chat_id %}"><button class="aps-btn">View Chat</button></a>
+                {% if is_coach %}
+                    <a href="{% url 'discussion:edit_chat' chat.chat_id %}"><button class="aps-btn">Edit Chat</button></a>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}

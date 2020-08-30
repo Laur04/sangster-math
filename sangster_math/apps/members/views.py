@@ -8,6 +8,7 @@ from django.urls import reverse
 from .models import Member, Test, Score
 from .forms import CreateUserForm, TestForm, ScoreForm
 from ..utils import create_random_url
+from ..discussion.models import Chat
 
 def index(request):
     return render(request, 'members/index.html')
@@ -62,6 +63,14 @@ def signup(request):
             new_user.groups.add(Group.objects.get_or_create(name="students")[0])
             new_user.save()
             new_member.save()
+            chat_members_list = [new_user]
+            for u in Group.objects.get(name="coach").user_set.all():
+                chat_members_list.append(u)
+            new_chat = Chat(
+                chat_id=create_random_url(), 
+                name="{} {} Private Chat".format(new_user.first_name, new_user.last_name),
+                members=chat_members_list)
+            new_chat.save()
             return redirect(reverse('login'))
         return render(request, 'members/create.html', context={'form': form})
     else:

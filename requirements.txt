@@ -1,6 +1,5 @@
 django
 django-heroku
-django-simple-captcha
 dj-database-url
 gunicorn
 Pillow

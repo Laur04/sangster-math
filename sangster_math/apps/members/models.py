@@ -32,8 +32,16 @@ class Member(models.Model):
         return email_list
 
     @staticmethod
+    def create_email_string():
+        return ','.join(Member.create_email_list())
+
+    @staticmethod
     def create_school_email_list():
         return [m.get_school_email() for m in Member.objects.all()]
+
+    @staticmethod
+    def create_school_email_string():
+        return ','.join(Member.create_school_email_list())
 
 class Test(models.Model):
     test_id = models.CharField(max_length=30, null=False, blank=False, unique=True)

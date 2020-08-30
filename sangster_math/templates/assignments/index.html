@@ -22,7 +22,6 @@
                 <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 centered-div">
                     {% if p.0.is_assignment %}
                         <a href="{{ p.0.assignment_link }}"><button class="aps-btn">View Assignment Link</button></a>
-                        <a href="{% url 'discussion:index' %}"><button class="aps-btn">Discussion</button></a>
                         {% if is_coach %}
                             <a href="{% url 'assignments:edit' p.0.post_id %}"><button class="aps-btn">Edit Post</button></a>
                             {% if p.0.answer_link %}

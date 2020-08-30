@@ -39,6 +39,5 @@
             <a href="mailto:{{ user.email }},{{ member.parent_email }}?&bcc=sangster_math_club@gmail.com"><button class="aps-btn">Send Email</button></a>
         {% endif %}
         <a href="mailto:{{ member.get_school_email }}?&bcc=1468333@fcpsschools.net"><button class="aps-btn">Send FCPS Email</button></a>
-        <a href="{% url 'discussion:index' %}"><button class="aps-btn">Send Message</button></a>
     {% endif %}
 {% endblock %}

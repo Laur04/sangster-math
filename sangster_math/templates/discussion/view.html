@@ -1,0 +1,40 @@
+{% extends "base_with_head.html" %}
+
+{% load static %}
+
+{% block head %}
+    <link rel='stylesheet' href="{% static 'css/discussion.css' %}">
+{% endblock %}
+
+{% block main %}
+    <p class="header-2">{{ chat.name }}</p>
+    <p>You might need to refresh this page to recieve new messages.</p>
+    <br>
+    {% if is_coach %}
+        <div class="member-list row">
+            <div class="col-lg-9 col-md-8 col-sm-7 col-xs-6">
+                <p><strong>Members:</strong> {{ members }}</p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+                <a href="{% url 'discussion:view_chat' chat.chat_id %}"><button class="aps-btn">Email This Chat</button></a>
+            </div>
+        </div>
+    {% endif %}
+    <div class="chat-holder">
+        {% for m in messages %}
+            {% if m.1 %}<div style="text-align:right;">{% else %}<div style="text-align:left;">{% endif %}
+                <div class="message">
+                    {{ m.0.content }} {% if not m.1 %}<em style="font-size:11px;">{{ m.0.user.username }}</em>{% endif %}<br>
+                </div>
+            </div>
+        {% endfor %}
+        <hr>
+        <div class="send-message">
+            <form method='post' enctype='multipart/form-data'>
+                {% csrf_token %}
+                {{ form.content }}{{ form.content.errors }}
+                <input class='aps-btn' type='submit' name='Submit' value='Send'/>
+            </form>
+        </div>
+    </div>
+{% endblock %}
