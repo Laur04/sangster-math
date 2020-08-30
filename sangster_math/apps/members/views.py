@@ -68,8 +68,10 @@ def signup(request):
                 chat_members_list.append(u)
             new_chat = Chat(
                 chat_id=create_random_url(), 
-                name="{} {} Private Chat".format(new_user.first_name, new_user.last_name),
-                members=chat_members_list)
+                name="{} {} Private Chat".format(new_user.first_name, new_user.last_name))
+            new_chat.save()
+            for m in chat_members_list:
+                new_chat.members.add(m)
             new_chat.save()
             return redirect(reverse('login'))
         return render(request, 'members/create.html', context={'form': form})
