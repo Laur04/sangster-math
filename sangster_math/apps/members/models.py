@@ -29,6 +29,8 @@ class Member(models.Model):
             email_list.append(m.parent_email)
             if not m.same_email():
                 email_list.append(m.user.email)
+        email_list.append('pmd7211@gmail.com')
+        email_list.append('koribeale@hotmail.com')
         return email_list
 
     @staticmethod

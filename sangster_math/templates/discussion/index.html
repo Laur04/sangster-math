@@ -10,7 +10,7 @@
     <p class="header-1">Discussion Board</p>
     {% if is_coach %}
         <a href="{% url 'discussion:add_chat' %}"><button class="aps-btn">Add Chat</button></a>
-        <a href="mailto:sangster_math_club@gmail.com?&bcc={{ personal_email_list }}"><button class="aps-btn">Email Everyone</button></a>
+        <a href="mailto:sangster.math.club@gmail.com?&bcc={{ personal_email_list }}"><button class="aps-btn">Email Everyone</button></a>
         <button onclick="alert('{{ school_email_list }}')" class="aps-btn">Generate FCPS Email List</button>
     {% endif %}
     <br>
