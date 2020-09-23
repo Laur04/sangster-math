@@ -40,7 +40,10 @@ class Post(models.Model):
         return self.assignment_link is not None
 
     def answers_showing(self):
-        return self.answer_post_time < timezone.now()
+        if self.answer_post_time is not None:
+            return self.answer_post_time < timezone.now()
+        else:
+            return False
 
     def users_completed_pretty(self):
         if self.users_completed.all():
