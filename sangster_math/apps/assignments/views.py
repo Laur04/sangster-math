@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.urls import reverse
 from django.conf import settings
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 
 from ..members.models import Member
 from .models import Post
@@ -38,13 +38,15 @@ def create_post(request):
             post_form = PostForm(request.POST)
             if post_form.is_valid():
                 post = post_form.save({"user": request.user})
-                send_mail(
+                email = EmailMessage(
                     "Sangster Math Club Announcement/Assignment: {}".format(post.title),
-                    post.content + '\n\n View this post here: https://sangster_math_club.herokuapp.com/assignments/#{}'.format(post.post_id),
+                    post.content + '\n\n View this post here: https://sangster-math-club.herokuapp.com/assignments/#{}'.format(post.post_id),
                     settings.DEFAULT_FROM_EMAIL,
+                    ['sangstermath@gmail.com'],
                     Member.create_email_list(),
-                    fail_silently=True
+                    reply_to=['pmd7211@gmail.com']
                 )
+                email.send(fail_silently=True)
                 return redirect(reverse('assignments:index'))
             return render(request, 'assignments/edit_create.html', context={"post_form": post_form})
         post_form = PostForm()
